@@ -19,3 +19,48 @@
 @media(max-width:700px){.service-grid{gap:20px}.service-grid .service-visual{min-height:320px;padding:26px 22px;gap:18px}.service-visual .number{font-size:39px}.service-grid .service-visual h3{font-size:23px}.service-grid .service-visual p{font-size:14px}.service-grid article:not(.service-visual){margin-top:5px}}
 
 .service-traffic::before{background-image:url('/assets/trafego.webp')}.service-groups::before{background-image:url('/assets/grupos.webp')}
+
+/* Service showcase: editorial imagery and pink panels. */
+.history-intro{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;margin:-15px 0 50px;padding-bottom:38px;border-bottom:1px solid #525454}
+.history-intro p{margin:0;line-height:1.55;color:#c7c9c9;font-size:16px;max-width:620px}
+.history-intro p:first-child{font-size:clamp(24px,3vw,40px);line-height:1.2;letter-spacing:-.035em;font-weight:600;color:#fff}
+.services-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:45px}
+.services-heading h2{font-size:clamp(42px,5.5vw,76px);margin:0}
+.services-heading>p{font-size:15px;line-height:1.6;color:#555;max-width:300px}
+.service-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#ad0b61 transparent;border-radius:5px}
+.service-slide{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;display:grid;grid-template-columns:.9fr 1.1fr;background:var(--pink)}
+.service-photo{min-height:560px;background-size:cover;background-position:center;position:relative}
+.service-photo>span{position:absolute;top:25px;left:25px;background:#101110cc;color:#fff;border:1px solid #ffffff40;padding:10px 15px;font-size:12px;letter-spacing:.12em}
+.service-copy{padding:clamp(30px,4.5vw,65px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;color:#190810}
+.service-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:30px}
+.service-copy h3{font-size:clamp(30px,3.5vw,50px);line-height:1.06;letter-spacing:-.05em;margin:0 0 24px;overflow-wrap:break-word}
+.service-copy>p{font-size:17px;line-height:1.7;margin:0 0 25px;max-width:540px}
+.service-copy .service-tags{font-size:12px;line-height:1.8;border-top:1px solid #68093655;padding-top:18px;margin-bottom:30px}
+.service-cta{display:inline-flex;align-items:center;gap:25px;font-size:15px;font-weight:600;padding:12px 0;border-bottom:1px solid #680936}
+.service-cta .icon-arrow{color:#650637}
+.service-controls{display:flex;justify-content:center;align-items:center;gap:20px;padding-top:25px}
+.service-controls[hidden]{display:none}
+.service-prev,.service-next{display:grid;place-items:center;width:44px;height:44px;border:1px solid #bdb8b8;border-radius:50%;background:transparent;cursor:pointer}
+.service-prev .icon-arrow{transform:rotate(-135deg)}
+.service-next .icon-arrow{transform:rotate(45deg)}
+.service-controls button:disabled{opacity:.3;cursor:default}
+.service-dots{display:flex;gap:2px}
+.service-dots button{width:36px;height:44px;display:grid;place-items:center;border:0;background:transparent;cursor:pointer}
+.service-dots span{display:block;width:7px;height:7px;border-radius:50%;background:#b9b1b6}
+.service-dots [aria-current="true"] span{background:#a60859;width:24px;border-radius:10px}
+.service-count{font-size:11px;color:#696068;letter-spacing:.1em}
+footer>a[href="#inicio"]:not(.brand){display:inline-flex;align-items:center;gap:10px;font-size:12px}
+@media(max-width:700px){
+.history-intro{grid-template-columns:1fr;gap:18px;margin:0 0 30px;padding-bottom:28px}
+.history-intro p:first-child{font-size:27px}.history-intro p{font-size:14px}
+.services-heading{display:block;margin-bottom:30px}.services-heading h2{font-size:44px}.services-heading>p{margin:22px 0 0;font-size:14px}
+.service-slide{grid-template-columns:1fr;grid-template-rows:210px 1fr}
+.service-photo{min-height:210px;background-position:center 43%}
+.service-photo>span{top:18px;left:20px;font-size:10px}
+.service-copy{padding:30px 24px;justify-content:flex-start}
+.service-kicker{margin-bottom:22px}
+.service-copy h3{font-size:32px}
+.service-copy>p{font-size:15px;line-height:1.7;margin-bottom:22px}
+.service-copy .service-tags{font-size:11px;margin-top:auto}
+.service-cta{font-size:14px}.service-controls{gap:10px}.service-dots button{width:29px}
+}
