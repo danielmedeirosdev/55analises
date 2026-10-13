@@ -6,7 +6,7 @@
 
 Uma trajetória em campanhas desde 2020, com atuação em todo o estado de São Paulo.
 
-[Visite o site](https://55-analises.vercel.app) · [Fale com a equipe](mailto:55analises@gmail.com) · [WhatsApp](https://wa.me/5519995605537)
+[Visite o site](https://55-analises.vercel.app) · [WhatsApp](https://wa.me/5519995605537)
 
 </div>
 
@@ -57,7 +57,6 @@ Acesse `http://localhost:8000`.
 ## Contato
 
 **55 Análises**  
-E-mail: [55analises@gmail.com](mailto:55analises@gmail.com)  
 WhatsApp: [(19) 99560-5537](https://wa.me/5519995605537)  
 Site: [55-analises.vercel.app](https://55-analises.vercel.app)
 
