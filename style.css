@@ -5,3 +5,15 @@
 .icon-arrow{width:22px;height:22px;display:inline-block;vertical-align:middle;color:#a60859;flex-shrink:0}.button .icon-arrow{color:#650637}.black .icon-arrow,.history .icon-arrow{color:#d94a98}.arrow:hover .icon-arrow,.campaign:hover .arrow .icon-arrow{color:#650637}.scope .icon-arrow{color:#650637}.menu svg,.close svg{width:24px;height:24px;color:#a60859}.close{display:grid;place-items:center}.scope>span{font-size:0}footer>a:last-child{display:inline-flex;align-items:center;gap:10px}#dialog-source .icon-arrow{width:17px;height:17px}summary:after{content:'';width:14px;height:14px;flex-shrink:0;background:linear-gradient(#a60859,#a60859) center/14px 2px no-repeat,linear-gradient(#a60859,#a60859) center/2px 14px no-repeat}details[open] summary:after{content:'';background:linear-gradient(#a60859,#a60859) center/14px 2px no-repeat}
 
 .editorial-images{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:0 0 48px}.editorial-images figure{margin:0;overflow:hidden}.editorial-images img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block;border-radius:4px}.editorial-images figcaption{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:16px 0;border-bottom:1px solid var(--line);font-size:13px;font-weight:600}.editorial-images small{font-size:10px;font-weight:400;color:#6c686b}.contact-foot{justify-content:flex-start}@media(max-width:700px){.editorial-images{grid-template-columns:1fr;gap:24px;margin-bottom:30px}.editorial-images figcaption{font-size:12px}}
+
+/* Images belong to their respective services. */
+.service-grid{gap:28px}
+.service-grid .service-visual{position:relative;isolation:isolate;overflow:hidden;min-height:310px;align-items:flex-end;padding:32px;border:0;border-radius:4px;color:#fff;background:#171717}
+.service-visual::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
+.service-research::before{background-image:url('/assets/pesquisa.webp')}
+.service-video::before{background-image:url('/assets/audiovisual.webp')}
+.service-visual::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.68) 45%,rgba(0,0,0,.94) 100%)}
+.service-grid .service-visual p{color:#f4f1f3}
+.service-visual .number{color:#ff79c3;font-size:48px}
+.service-visual h3{max-width:360px}
+@media(max-width:700px){.service-grid{gap:20px}.service-grid .service-visual{min-height:320px;padding:26px 22px;gap:18px}.service-visual .number{font-size:39px}.service-grid .service-visual h3{font-size:23px}.service-grid .service-visual p{font-size:14px}.service-grid article:not(.service-visual){margin-top:5px}}
