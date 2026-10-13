@@ -12,3 +12,41 @@ const grid=document.querySelector('#campaigns'),dialog=document.querySelector('#
 for(const c of campaigns){const button=document.createElement('button');button.className='campaign';button.setAttribute('aria-label',`${c.name}, ${c.year}: ver votos e resultado`);button.setAttribute('aria-haspopup','dialog');button.innerHTML=`<span class="year">${c.year}</span><div><h3>${c.name}</h3><p>${c.scope}</p></div><span class="arrow" aria-hidden="true"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>`;button.addEventListener('click',()=>{document.querySelector('#dialog-year').textContent=`Eleições ${c.year}`;document.querySelector('#dialog-title').textContent=c.name;document.querySelector('#dialog-office').textContent=c.office;document.querySelector('#dialog-votes').textContent=c.votes.toLocaleString('pt-BR');document.querySelector('#dialog-status').textContent=c.status;document.querySelector('#dialog-scope').textContent=c.scope;const source=document.querySelector('#dialog-source');source.href=c.source;source.replaceChildren(document.createTextNode(c.sourceName+" "));source.insertAdjacentHTML("beforeend",`<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>`);dialog.showModal();});grid.append(button);}
 document.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 const menu=document.querySelector('.menu'),nav=document.querySelector('nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menu');}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}});
+
+/* Manual carousel: swipe, keyboard, arrows and direct selection. */
+const serviceTrack=document.querySelector('#service-track');
+if(serviceTrack){
+ const slides=[...serviceTrack.querySelectorAll('.service-slide')];
+ const controls=document.querySelector('.service-controls');
+ const dots=[...controls.querySelectorAll('[data-slide]')];
+ const prev=controls.querySelector('.service-prev'),next=controls.querySelector('.service-next');
+ let current=0;
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ function updateServices(index){
+  current=index;
+  dots.forEach((dot,i)=>dot.setAttribute('aria-current',String(i===index)));
+  prev.disabled=index===0;next.disabled=index===slides.length-1;
+  controls.querySelector('.service-count').textContent=String(index+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+ }
+ function goService(index){
+  const target=Math.max(0,Math.min(slides.length-1,index));
+  serviceTrack.scrollTo({left:target*serviceTrack.clientWidth,behavior:reduced.matches?'instant':'smooth'});
+ }
+ controls.hidden=false;updateServices(0);
+ dots.forEach((dot,i)=>dot.addEventListener('click',()=>goService(i)));
+ prev.addEventListener('click',()=>goService(current-1));
+ next.addEventListener('click',()=>goService(current+1));
+ let serviceFrame;
+ serviceTrack.addEventListener('scroll',()=>{
+  cancelAnimationFrame(serviceFrame);
+  serviceFrame=requestAnimationFrame(()=>updateServices(Math.max(0,Math.min(slides.length-1,Math.round(serviceTrack.scrollLeft/serviceTrack.clientWidth)))));
+ },{passive:true});
+ serviceTrack.addEventListener('keydown',e=>{
+  if(e.target!==serviceTrack)return;
+  if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){
+   e.preventDefault();goService(e.key==='Home'?0:e.key==='End'?slides.length-1:current+(e.key==='ArrowRight'?1:-1));
+  }
+ });
+ const serviceResize=new ResizeObserver(()=>{serviceTrack.scrollTo({left:current*serviceTrack.clientWidth,behavior:'instant'});});
+ serviceResize.observe(serviceTrack);
+}
